@@ -20,10 +20,11 @@
   :author "guicho"
   :mailto ""
   :license ""
-  :depends-on (:optima :alexandria :iterate)
+  :depends-on (:optima :alexandria :iterate :swank :asdf)
   :components ((:module "src"
                 :components
-                ((:file "package"))))
+                ((:file "package")
+                 (:file "special"))))
   :description ""
   
   :long-description
