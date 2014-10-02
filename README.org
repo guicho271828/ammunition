@@ -1,0 +1,27 @@
+
+* Sokoban 
+
+** Usage
+
+** Dependencies
+
+This library is at least tested on implementation listed below:
+
++ SBCL 1.2.1 on X86-64 Linux  3.13.0-37-generic (author's environment)
+
+Also, it depends on the following libraries:
+
+
+** Installation
+
+
+** Author
+
++ guicho
+
+* Copyright
+
+Copyright (c) 2014 guicho
+
+
+
