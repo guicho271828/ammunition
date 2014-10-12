@@ -1,6 +1,8 @@
 
 * Sokoban 
 
+Another attempt to solve the utility function problem
+
 ** Usage
 
 ** Dependencies
