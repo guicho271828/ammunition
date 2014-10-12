@@ -4,7 +4,11 @@
   "List of package designators")
 
 (defvar *preferred-symbols* nil
-  "List of (symbol-names . pkg-desig)")
+  "List of (string-desig . pkg-desig). Example:
+
+ '((:match . :optima))
+
+")
 
 (defvar *cache-storage*
     (merge-pathnames ".cache/common-lisp/sokoban" (user-homedir-pathname))
@@ -15,5 +19,8 @@
   (ensure-directories-exist *cache-storage*  :verbose t))
 
 (defvar *username*
-    #+sbcl (sb-posix:getenv "USER"))
+    #+sbcl (sb-posix:getenv "USER")
+    "Should be same as :author field in order to recognize your own
+    library. Defaulted to the unix username.")
+
 
