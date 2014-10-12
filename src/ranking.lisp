@@ -29,7 +29,7 @@
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (defstruct pseudo-symbol
-    "cache data for the symbol metadata"
+    "cache the symbol metadata"
     (name (error "required!") :type string)
     (package (error "required!") :type string)
     (system (error "required!") :type string)

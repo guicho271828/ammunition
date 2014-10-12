@@ -23,8 +23,16 @@
   :depends-on (:optima :alexandria :iterate :swank :asdf)
   :components ((:module "src"
                 :components
-                ((:file "package")
-                 (:file "special"))))
+                ((:file :package)
+                 (:file :special)
+                 (:file :utility)
+                 ;; analysis tools
+                 (:file :db)
+                 (:file :accessors)
+                 (:file :ranking)
+                 (:file :refcpount)
+                 ;; user level tools
+                 (:file :hook))))
   :description ""
   
   :long-description
