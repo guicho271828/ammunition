@@ -1,27 +1,27 @@
-(in-package :sokoban)
+(in-package :ammunition)
 
 (defvar *old-hook* nil)
-(defun %enable-sokoban ()
+(defun %enable-ammunition ()
   (shiftf *old-hook*
           *macroexpand-hook*
-          #'sokoban-hook))
+          #'ammunition-hook))
 
-(defun %disable-sokoban ()
+(defun %disable-ammunition ()
   (shiftf *macroexpand-hook*
           *old-hook*
           nil))
 
-(defmacro enable-sokoban ()
+(defmacro enable-ammunition ()
   `(eval-when (:compile-toplevel)
      ;; (defpackage ,temp)
      ;;   (in-package ,temp)
-     (%enable-sokoban)))
+     (%enable-ammunition)))
 
 
 ;;;; hook
 
-(defun sokoban-hook (expand-fn form environment)
-  ;; now, after (enable-sokoban),
+(defun ammunition-hook (expand-fn form environment)
+  ;; now, after (enable-ammunition),
   ;; current package is set to a temporary package.
   ;; 
   (funcall expand-fn

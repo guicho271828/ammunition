@@ -1,5 +1,5 @@
 #|
-  This file is a part of sokoban project.
+  This file is a part of ammunition project.
   Copyright (c) 2014 guicho
 |#
 
@@ -10,29 +10,29 @@
 
 
 (in-package :cl-user)
-(defpackage sokoban-asd
+(defpackage ammunition-asd
   (:use :cl :asdf))
-(in-package :sokoban-asd)
+(in-package :ammunition-asd)
 
 
-(defsystem sokoban
+(defsystem ammunition
   :version "0.1"
   :author "guicho"
   :mailto ""
   :license ""
-  :depends-on (:optima :alexandria :iterate :swank :asdf)
+  :depends-on (:trivia :trivial-types :alexandria :iterate :swank :asdf :uiop)
   :components ((:module "src"
                 :components
-                ((:file :package)
-                 (:file :special)
-                 (:file :utility)
+                ((:file :0.package)
+                 (:file :1.special)
+                 (:file :1.utility)
                  ;; analysis tools
-                 (:file :db)
-                 (:file :accessors)
-                 (:file :ranking)
-                 (:file :refcpount)
+                 (:file :2.db)
+                 (:file :2.accessors)
+                 (:file :3.ranking)
+                 (:file :3.refcount)
                  ;; user level tools
-                 (:file :hook))))
+                 (:file :3.hook))))
   :description ""
   
   :long-description
@@ -48,4 +48,4 @@
           (setf (fill-pointer seq) (read-sequence seq stream))
           seq)))
   
-  :in-order-to ((test-op (load-op sokoban.test))))
+  :in-order-to ((test-op (load-op ammunition.test))))

@@ -1,5 +1,5 @@
 
-(in-package :sokoban)
+(in-package :ammunition)
 
 
 (defun walk-tree (fn tree)

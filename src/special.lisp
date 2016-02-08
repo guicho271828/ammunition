@@ -1,4 +1,4 @@
-(in-package :sokoban)
+(in-package :ammunition)
 
 (defvar *preferred-packages* nil
   "List of package designators")
@@ -11,7 +11,7 @@
 ")
 
 (defvar *cache-storage*
-    (merge-pathnames ".cache/common-lisp/sokoban" (user-homedir-pathname))
+    (merge-pathnames ".cache/common-lisp/ammunition" (user-homedir-pathname))
   "List of package designators")
 (ensure-directories-exist *cache-storage* :verbose t)
 (defun reset-database ()

@@ -1,4 +1,4 @@
-(in-package :sokoban)
+(in-package :ammunition)
 
 ;;; all symbols & dependency graph
 

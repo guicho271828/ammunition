@@ -1,5 +1,5 @@
 
-* Sokoban 
+* Ammunition 
 
 Another attempt to solve the utility function problem
 

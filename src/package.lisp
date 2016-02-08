@@ -1,9 +1,9 @@
 #|
-  This file is a part of sokoban project.
+  This file is a part of ammunition project.
   Copyright (c) 2014 guicho
 |#
 
 (in-package :cl-user)
-(defpackage sokoban
+(defpackage ammunition
   (:use :cl :optima :alexandria :iterate))
 

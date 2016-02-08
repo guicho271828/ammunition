@@ -1,4 +1,4 @@
-(in-package :sokoban)
+(in-package :ammunition)
 
 #|  symbols are inferred in this order:
 
