@@ -17,5 +17,5 @@
                :fiveam)
   :components ((:module "t"
                 :components
-                ((:file ""))))
-  :perform (load-op :after (op c) (PROGN (EVAL (READ-FROM-STRING "(fiveam:run! :ammunition)")) (CLEAR-SYSTEM C))))
+                ((:file "package"))))
+  :perform (test-op :after (op c) (eval (read-from-string "(fiveam:run! :ammunition)"))))
