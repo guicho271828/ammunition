@@ -26,5 +26,6 @@
               (package-source :ammunition.test.dummy))))
   (is (equal (asdf:find-system :ammunition.test.dummy)
              (source-system
-              (package-source :ammunition.test.dummy)))))
+              (package-source
+               (symbol-package 'ammunition.test.dummy:dummy))))))
 

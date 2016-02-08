@@ -11,5 +11,6 @@
    #:source-system
    #:symbol-system
    #:symbol-author
-   #:package-author))
+   #:package-author
+   #:system-source))
 

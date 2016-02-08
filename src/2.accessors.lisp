@@ -31,4 +31,6 @@
 
 ;; system > source > package > symbol
 
+(defun system-source (system)
+  (asdf:system-source-file system))
 
