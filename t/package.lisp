@@ -1,24 +1,24 @@
 #|
-  This file is a part of sokoban project.
+  This file is a part of ammunition project.
   Copyright (c) 2014 guicho
 |#
 
 (in-package :cl-user)
-(defpackage :sokoban.test
+(defpackage :ammunition.test
   (:use :cl
-        :sokoban
+        :ammunition
         :fiveam))
-(in-package :sokoban.test)
+(in-package :ammunition.test)
 
 
 
-(def-suite :sokoban)
-(in-suite :sokoban)
+(def-suite :ammunition)
+(in-suite :ammunition)
 
 ;; run test with (run! test-name) 
 ;;   test as you like ...
 
-(test sokoban
+(test ammunition
 
   )
 
