@@ -16,7 +16,7 @@
    (assoc :file
           (cdr (swank-backend:find-source-location
                 (find-package pkg-designator))))))
-   
+
 (defun source-system (path)
   (asdf:map-systems
    (lambda (sys)
