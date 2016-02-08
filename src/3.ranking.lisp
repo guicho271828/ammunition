@@ -18,10 +18,10 @@
 
 (defun current-package-p (sym)
   (multiple-value-match (find-symbol sym)
-    (((symbol- (package (eq *package*))) :internal)
+    (((symbol (package (eq *package*))) :internal)
      ;; not imported
      nil)
-    (((symbol- package) (or :internal :external :inherited))
+    (((symbol package) (or :internal :external :inherited))
      ;; explicitly imported/exported, or used
      t)))
 
@@ -51,7 +51,7 @@
 
 (defun preferred-symbol-p (psym)
   (match psym
-    ((guard (pseudo-symbol- name package)
+    ((guard (pseudo-symbol name package)
             (find-if (lambda (cons)
                        (match cons
                          ((cons (equal name) (equal package))
@@ -70,7 +70,7 @@
   "Returns T if the psym is in the same package as one of preferred
   symbols."
   (match psym
-    ((guard (pseudo-symbol- package)
+    ((guard (pseudo-symbol package)
             (find-if (lambda (cons)
                        (match cons
                          ((cons _ (equal package))
