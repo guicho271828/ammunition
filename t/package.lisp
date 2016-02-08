@@ -6,7 +6,7 @@
 (in-package :cl-user)
 (defpackage :ammunition.test
   (:use :cl
-        :ammunition
+        :ammunition.impl
         :fiveam))
 (in-package :ammunition.test)
 

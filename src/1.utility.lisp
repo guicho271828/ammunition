@@ -1,5 +1,5 @@
 
-(in-package :ammunition)
+(in-package :ammunition.impl)
 
 
 (defun walk-tree (fn tree)

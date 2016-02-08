@@ -4,6 +4,12 @@
 |#
 
 (in-package :cl-user)
-(defpackage ammunition
-  (:use :cl :trivia :alexandria :iterate))
+(defpackage ammunition.impl
+  (:use :cl :trivia :alexandria :iterate)
+  (:export
+   #:package-source
+   #:source-system
+   #:symbol-system
+   #:symbol-author
+   #:package-author))
 

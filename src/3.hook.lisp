@@ -1,4 +1,4 @@
-(in-package :ammunition)
+(in-package :ammunition.impl)
 
 (defvar *old-hook* nil)
 (defun %enable-ammunition ()

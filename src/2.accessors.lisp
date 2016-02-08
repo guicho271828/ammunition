@@ -1,4 +1,4 @@
-(in-package :ammunition)
+(in-package :ammunition.impl)
 
 ;; note: useful functions
 ;; (swank-backend:who-calls 'alexandria:plist-alist)
