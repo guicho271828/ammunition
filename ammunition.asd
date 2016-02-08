@@ -20,7 +20,7 @@
   :author "guicho"
   :mailto ""
   :license ""
-  :depends-on (:trivia :trivial-types :alexandria :iterate :swank :asdf :uiop)
+  :depends-on (:trivia :alexandria :iterate :swank :asdf :uiop)
   :components ((:module "src"
                 :components
                 ((:file :0.package)

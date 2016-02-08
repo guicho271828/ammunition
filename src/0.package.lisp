@@ -5,5 +5,5 @@
 
 (in-package :cl-user)
 (defpackage ammunition
-  (:use :cl :trivia :trivial-types :alexandria :iterate))
+  (:use :cl :trivia :alexandria :iterate))
 
