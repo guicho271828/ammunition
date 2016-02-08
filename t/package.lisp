@@ -20,5 +20,11 @@
 
 (test ammunition
   (is (equal (asdf:system-relative-pathname :ammunition.test.dummy "dummy.lisp")
-             (package-source :ammunition.test.dummy))))
+             (package-source :ammunition.test.dummy)))
+  (is (equal (asdf:find-system :ammunition.test.dummy)
+             (source-system
+              (package-source :ammunition.test.dummy))))
+  (is (equal (asdf:find-system :ammunition.test.dummy)
+             (source-system
+              (package-source :ammunition.test.dummy)))))
 

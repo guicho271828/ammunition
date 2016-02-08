@@ -14,6 +14,7 @@
   :author "guicho"
   :license ""
   :depends-on (:ammunition
+               :ammunition.test.dummy
                :fiveam)
   :components ((:module "t"
                 :components

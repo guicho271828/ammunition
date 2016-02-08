@@ -12,26 +12,23 @@
 ;; cl:FIND-ALL-SYMBOLS
 
 (defun package-source (pkg-designator)
-  (second
-   (assoc :file
-          (cdr (swank-backend:find-source-location
-                (find-package pkg-designator))))))
+  (pathname
+   (second
+    (assoc :file
+           (cdr (swank-backend:find-source-location
+                 (find-package pkg-designator)))))))
 
 (defun source-system (path)
-  (asdf:map-systems
-   (lambda (sys)
-     (when (ignore-errors
-             (search (namestring
-                      (asdf:component-pathname
-                       (asdf:find-system sys))) path))
-       (return-from source-system sys)))))
+  (let ((path (pathname path)))
+    (labels ((contains-file-p (component)
+               (or (equal (asdf:component-pathname component) path)
+                   (some #'contains-file-p
+                         (ignore-errors (asdf:component-children component))))))
+      (asdf:map-systems
+       (lambda (sys)
+         (when (contains-file-p sys)
+           (return-from source-system sys)))))))
 
-(defun symbol-system (symbol)
-  (source-system
-   (package-source
-    (symbol-package symbol))))
+;; system > source > package > symbol
 
-(defun symbol-author (symbol)
-  (asdf:system-author (symbol-system symbol)))
-(defun package-author (pkg-designator)
-  (asdf:system-author (symbol-system symbol)))
+
