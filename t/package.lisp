@@ -19,6 +19,6 @@
 ;;   test as you like ...
 
 (test ammunition
-
-  )
+  (is (equal (asdf:system-relative-pathname :ammunition.test.dummy "dummy.lisp")
+             (package-source :ammunition.test.dummy))))
 
