@@ -27,7 +27,6 @@
                  (:file :1.special)
                  (:file :1.utility)
                  ;; analysis tools
-                 (:file :2.db)
                  (:file :2.accessors)
                  (:file :3.ranking)
                  (:file :3.refcount)
