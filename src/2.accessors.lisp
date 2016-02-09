@@ -34,3 +34,7 @@
 (defun system-source (system)
   (asdf:system-source-file system))
 
+(defun package-system (pkg-designator)
+  (source-system
+   (package-source pkg-designator)))
+

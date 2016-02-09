@@ -3,78 +3,91 @@
 #|  symbols are inferred in this order:
 
  ^^^ stronger
- explicitly imported symbols
+ accessible symbols (incl. imported)
  preferred symbols
  preferred packages
+ preferred system
  -----^^^mandatory rankings^^^-----
  personal reference count: 自分がauthorであるsystem中に現れる関数は、高く評価する。
- personal relevance count: preferred symbols と同じsystemに属する関数は、高く評価する。
+ preferred symbol relevance : preferred symbols と同じsystemに属する関数は、高く評価する。
+ preferred symbol relevance : preferred symbols と同じsystemに属する関数は、高く評価する。
  global reference count
  >> weaker
 
 |#
 
-;;;; assume the symbol is already accessible in *package*
-
-(defun current-package-p (sym)
-  (multiple-value-match (find-symbol sym)
-    (((symbol (package (eq *package*))) :internal)
-     ;; not imported
-     nil)
-    (((symbol package) (or :internal :external :inherited))
-     ;; explicitly imported/exported, or used
-     t)))
-
-;;;; pseudo symbol
-
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (defstruct pseudo-symbol
-    "cache the symbol metadata"
-    (name (error "required!") :type string)
-    (package (error "required!") :type string)
-    (system (error "required!") :type string)
-    (depends-on (error "required!") :type list)))
-
-;;;; these are computed only when the symbol should be imported from elsewhere.
-
 ;; map over the db of pseudo-symbols
 (defun symbol-impact (psym)
   "compute the impact factor of each pseudo symbol"
-  (vector (preferred-symbol-p psym)
+  (vector (accessible-symbol-p psym)
+          ;; predicates based on custom configurations
+          (preferred-symbol-p psym)
           (preferred-package-p psym)
-          (personal-references psym)
+          (preferred-system-p psym)
+          ;; relevance to the preferred symbols
+          (preferred-symbol-relevance psym)
+          (preferred-package-relevance psym)
+          (preferred-system-relevance psym)
+          ;; relevance to yourself
           (personal-relevance psym)
+          (personal-reference psym)
           (global-references psym)))
 
 
-;;;;; predicates based on custom configurations
+;;;; predicates based on custom configurations
+
+
+(defun accessible-symbol-p (psym)
+  (if (find-symbol (pseudo-symbol-name psym))
+      t nil))
 
 (defun preferred-symbol-p (psym)
-  (match psym
-    ((guard (pseudo-symbol name package)
-            (find-if (lambda (cons)
-                       (match cons
-                         ((cons (equal name) (equal package))
-                          t)))
-                     *preferred-symbols*))
-     t))) ;; make it a boolean
+  (if (find psym
+            *preferred-symbols*
+            :test #'equalp)
+      t nil))
 
 (defun preferred-package-p (psym)
   (if (find (pseudo-symbol-package psym)
             *preferred-packages*
-            :key #'find-package
-            :test #'string=)
+            :test #'string-equal)
       t nil))
 
-(defun personal-relevance (psym)
-  "Returns T if the psym is in the same package as one of preferred
-  symbols."
-  (match psym
-    ((guard (pseudo-symbol package)
-            (find-if (lambda (cons)
-                       (match cons
-                         ((cons _ (equal package))
-                          t)))
-                     *preferred-symbols*))
-     t)))
+(defun preferred-system-p (psym)
+  (if (find (pseudo-symbol-system psym)
+            *preferred-systems*
+            :test #'string-equal)
+      t nil))
+
+(defun preferred-author-p (psym)
+  (if (find (pseudo-symbol-author psym)
+            *preferred-authors*
+            :test #'string-equal)
+      t nil))
+
+;;;; relevance
+
+(defun preferred-symbol-relevance (psym)
+  "Count the number of preferred symbols which are in the same package as PSYM"
+  (count (pseudo-symbol-package psym)
+         *preferred-symbols*
+         :test #'string-equal
+         :key #'pseudo-symbol-package))
+
+(defun preferred-package-relevance (psym)
+  "Count the number of preferred packages which are in the same system as PSYM"
+  (count (pseudo-symbol-system psym)
+         *preferred-packages*
+         :test #'string-equal
+         :key (compose #'asdf:component-name #'package-system)))
+
+(defun preferred-system-relevance (psym)
+  "Count the number of preferred systems which are written by the same author as PSYM"
+  (count (pseudo-symbol-author psym)
+         *preferred-systems*
+         :test #'string-equal
+         :key (compose #'asdf:system-mailto #'asdf:find-system)))
+
+
+
 
