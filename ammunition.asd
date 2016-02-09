@@ -29,8 +29,6 @@
                  ;; analysis tools
                  (:file :2.accessors)
                  (:file :3.ranking)
-                 (:file :3.refcount)
-                 ;; user level tools
-                 (:file :3.hook))))
+                 (:file :3.refcount))))
   :description ""
   :in-order-to ((test-op (test-op ammunition.test))))
